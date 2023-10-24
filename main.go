@@ -2,6 +2,7 @@ package main
 
 import (
 	"html/template"
+	"log"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -9,6 +10,15 @@ import (
 )
 
 func main() {
+	err := openDB()
+	if err != nil {
+		log.Panic(err)
+	}
+	err = setupDB()
+	if err != nil {
+		log.Panic(err)
+	}
+	defer closeDB()
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))

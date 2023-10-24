@@ -1,2 +1,2 @@
 # todo-app
-Todo app using Go, Postgres , HTMX and Tailwind
+Todo app using Go, sqlite , HTMX and Tailwind
